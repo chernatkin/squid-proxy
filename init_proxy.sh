@@ -6,6 +6,12 @@ passwd squid
 
 su - squid
 
+sudo add-apt-repository "deb-src http://archive.ubuntu.com/ubuntu xenial main restricted universe"
+sudo add-apt-repository "deb-src http://archive.ubuntu.com/ubuntu xenial-updates main restricted universe"
+sudo add-apt-repository "deb-src http://security.ubuntu.com/ubuntu xenial-security main restricted universe multiverse"
+sudo add-apt-repository "deb-src http://archive.canonical.com/ubuntu xenial partner"
+
+
 sudo apt-get update
 
 sudo apt-get build-dep squid3
@@ -37,5 +43,10 @@ openssl x509 -req -in proxy.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial
 
 sudo cp proxy.crt /etc/squid3/
 sudo cp proxy.key /etc/squid3/
+
+sudo htpasswd -c /etc/squid3/passwords sergey
+
+sudo chmod -R 777 /var/cache/squid
+sudo /usr/sbin/squid -z
 
 sudo /usr/sbin/squid -k restart
