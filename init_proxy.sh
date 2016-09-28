@@ -45,6 +45,7 @@ sudo cp proxy.crt /etc/squid3/
 sudo cp proxy.key /etc/squid3/
 
 sudo htpasswd -c /etc/squid3/passwords sergey
+sudo htpasswd /etc/squid3/passwords guest
 
 sudo chmod -R 777 /var/cache/squid
 sudo /usr/sbin/squid -z
