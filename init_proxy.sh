@@ -51,3 +51,15 @@ sudo chmod -R 777 /var/cache/squid
 sudo /usr/sbin/squid -z
 
 sudo /usr/sbin/squid -k restart
+
+
+sudo iptables -t filter -A INPUT -i lo -j ACCEPT
+sudo iptables -t filter -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+sudo iptables -t filter -A INPUT -p tcp --dport 22 -j ACCEPT
+sudo iptables -t filter -A INPUT -p tcp --dport 3129 -j ACCEPT
+sudo iptables -t filter -A INPUT -p udp --dport 3129 -j ACCEPT
+sudo iptables -t filter -A INPUT -p icmp --icmp-type echo-request -j ACCEPT
+sudo iptables -t filter -P INPUT DROP
+
+sudo iptables -t filter -P FORWARD DROP
+
