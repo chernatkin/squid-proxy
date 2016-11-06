@@ -51,7 +51,10 @@ sudo chmod -R 777 /var/cache/squid
 sudo /usr/sbin/squid -z
 
 sudo /usr/sbin/squid -k restart
+sudo /usr/sbin/squid -k rotate
 
+#add running on startup /etc/rc.local
+sudo /usr/sbin/squid
 
 sudo iptables -t filter -A INPUT -i lo -j ACCEPT
 sudo iptables -t filter -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
