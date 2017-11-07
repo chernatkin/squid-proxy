@@ -6,7 +6,10 @@ passwd squid
 
 su - squid
 
+sudo faillog -m 3 -l 3600
+
 sudo apt-get update
+sudo apt-get upgrade
 
 sudo apt-get build-dep squid3
 sudo apt-get build-dep openssl
@@ -38,8 +41,8 @@ openssl x509 -req -in proxy.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial
 sudo cp proxy.crt /etc/squid3/
 sudo cp proxy.key /etc/squid3/
 
-sudo htpasswd -c /etc/squid3/passwords sergey
-sudo htpasswd /etc/squid3/passwords guest
+sudo htpasswd -c /etc/squid3/passwords guest
+sudo htpasswd /etc/squid3/passwords sergey
 
 sudo chmod -R 777 /var/cache/squid
 sudo /usr/sbin/squid -z
